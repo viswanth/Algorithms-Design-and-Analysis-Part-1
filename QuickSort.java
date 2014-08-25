@@ -21,7 +21,7 @@ public class QuickSort {
 	
 	public void sort(int left, int right){
 	
-		int pivot = unsortedArray[left];
+		int pivot = getPivot(left);
 		
 		int i = left + 1;
 		
@@ -37,6 +37,11 @@ public class QuickSort {
 		if(right > i)
 			sort(i,right);
 		
+	}
+
+	private int getPivot(int left) {
+		// TODO Auto-generated method stub
+		return unsortedArray[left];
 	}
 
 	private void swap(int i, int j) {

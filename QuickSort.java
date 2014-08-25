@@ -1,3 +1,6 @@
+//Quick Sort Algorithm. Here the pivot is simply chosen to be the first element of the unsorted array
+
+
 package DivideConquer;
 
 public class QuickSort {

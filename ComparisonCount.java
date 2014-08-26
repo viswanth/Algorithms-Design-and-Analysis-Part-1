@@ -29,7 +29,7 @@ public class ComparisonCount {
 	public void sort(int left, int right){
 	
 		comparisonCount += right - left;
-		/*
+		
 		int pivot = getPivot(left);
 		
 		
@@ -46,20 +46,8 @@ public class ComparisonCount {
 			sort(left,i-2);
 		if(right > i)
 			sort(i,right);
-		*/
-		int pivot = getPivot(right);
-		int i = left;
-		for(int j = left; j < right; j++){	
-			if(unsortedArray[j] < pivot){
-				swap(i,j);
-				i++;
-			}
-		}
-		swap(right,i);
-		if(i > left)
-			sort(left,i-1);
-		if(right > i)
-			sort(i+1, right);
+		
+		
 			
 	}
 

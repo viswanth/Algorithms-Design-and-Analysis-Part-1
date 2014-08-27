@@ -31,6 +31,11 @@ public class ComparisonCount {
 	public void sort(int left, int right){
 	
 		comparisonCount += right - left;
+<<<<<<< HEAD
+=======
+		
+		int pivot = getPivot(left);
+>>>>>>> origin/master
 		
 		int pivotIndex = 0;
 		int pivot = 0;
@@ -75,6 +80,7 @@ public class ComparisonCount {
 			sort(i,right);
 		
 		
+<<<<<<< HEAD
 	}
 
 	private int getMedian(int first, int middle, int last) {
@@ -91,6 +97,9 @@ public class ComparisonCount {
 			return last;
 		else
 			return middle;
+=======
+			
+>>>>>>> origin/master
 	}
 
 	private int getPivot(int right) {

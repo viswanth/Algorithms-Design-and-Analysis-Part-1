@@ -15,6 +15,8 @@ public class ComparisonCount {
 	private int[] unsortedArray;
 	
 	private int arrayLength, comparisonCount = 0;
+
+	private String selection;
 	
 	public void quickSort(int[] array){
 		if(array == null || array.length == 0){
@@ -29,9 +31,34 @@ public class ComparisonCount {
 	public void sort(int left, int right){
 	
 		comparisonCount += right - left;
-		/*
-		int pivot = getPivot(left);
 		
+		int pivotIndex = 0;
+		int pivot = 0;
+		
+		switch(selection){
+		case "FIRST":
+			pivotIndex = left;
+			pivot = getPivot(pivotIndex);
+			break;
+		case "LAST":
+			pivotIndex = right;
+			pivot = getPivot(pivotIndex);
+			break;
+		case "MEDIAN":
+			int first = left, last = right, middle = 0;
+			if((right - left) % 2 == 0){ 
+				middle = first + (last - first)/2;
+			}else{
+				middle = first + (last - first - 1)/2;
+			}
+			
+			pivotIndex = getMedian(first,middle,last);
+			pivot = getPivot(pivotIndex);
+			break;
+		}
+		
+		if(pivotIndex != left)
+			swap(left,pivotIndex);
 		
 		int i = left + 1;
 		
@@ -46,21 +73,24 @@ public class ComparisonCount {
 			sort(left,i-2);
 		if(right > i)
 			sort(i,right);
-		*/
-		int pivot = getPivot(right);
-		int i = left;
-		for(int j = left; j < right; j++){	
-			if(unsortedArray[j] < pivot){
-				swap(i,j);
-				i++;
-			}
-		}
-		swap(right,i);
-		if(i > left)
-			sort(left,i-1);
-		if(right > i)
-			sort(i+1, right);
-			
+		
+		
+	}
+
+	private int getMedian(int first, int middle, int last) {
+		// TODO Auto-generated method stub
+		
+		QuickSort qs = new QuickSort();
+		int[] three = new int[]{unsortedArray[first], unsortedArray[middle],
+								unsortedArray[last]};
+		
+		qs.quickSort(three);
+		if(three[1] == unsortedArray[first])
+			return first;
+		else if(three[1] == unsortedArray[last])
+			return last;
+		else
+			return middle;
 	}
 
 	private int getPivot(int right) {
@@ -102,9 +132,19 @@ public class ComparisonCount {
 		
 		ComparisonCount cc = new ComparisonCount();
 		
+		//Add FIRST, LAST or MEDIAN here to decide the kind of pivot you would 
+		//need to partition the array of numbers.
+		//FIRST always chooses the first element of the subarray as the pivot
+		//LAST always chooses the last element of the subarray as the pivot
+		//MEDIAN chooses the median of the elements of the subarray as the pivot
+		
+		cc.selection = "MEDIAN";
+		
 		try {
+			//Open an input stream to the input text file of integers.
 			InputStream is = new FileInputStream("C:\\quicksortip.txt");
 			
+			//Call the getArrayFromFile function to get the array
 			int[] sample = cc.getArrayFromFile(new BufferedInputStream(is));
 			//int[] sample = new int[]{1,3,6,9,12,4,2,8,7,5,0,14};
 			cc.quickSort(sample);

@@ -1,3 +1,14 @@
+/**
+ *  The ComparisonCount class is used to count the number of comparisons that 
+ *  occur during a quick sort.
+ *  It helps us analyze how the number of comparisons change with the choixe of 
+ *  the pivot. We have here tried the positions of first, last and the median as the
+ *  pivot element. Runs show that median gets the least number of comparisons on average.
+ *     
+ *  @author Viswanth Chadalawada
+ */
+
+
 package DivideConquer;
 
 import java.io.BufferedInputStream;
